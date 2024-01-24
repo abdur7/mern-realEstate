@@ -1,19 +1,20 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import userRouter from "./routes/user.routes.js";
 dotenv.config();
+
+const app = express();
+
+const PORT = 3000;
+
+app.use("/api/user", userRouter);
 
 mongoose
   .connect(process.env.DBConnect)
   .then(() => console.log("Connected to DB"))
   .catch((err) => console.log(err));
-const app = express();
-
-const PORT = 3000;
-app.get("/", (req, res) => {
-  res.send("backend homepage");
-});
 
 app.listen(PORT, () => {
-  console.log(`Server is running at ${PORT} Port`);
+  console.log(`Server is running at Port ${PORT} `);
 });
