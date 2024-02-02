@@ -16,9 +16,7 @@ export default function Profile() {
     const [filePer, setFilePer] = useState(0)
     const [fileUploadError, setFileUploadError] = useState(false)
     const [formData, setFormData] = useState({})
-    console.log(filePer)
-    console.log(fileUploadError)
-    console.log(formData)
+
 
 
     const fileRef = useRef(null)
@@ -60,7 +58,7 @@ export default function Profile() {
             <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
             <form className='flex flex-col gap-4'>
                 <input type="file" ref={fileRef} hidden accept='image/*' onChange={(e) => setFile(e.target.files[0])} />
-                <img src={currentUser.avatar} onClick={() => fileRef.current.click()} className='h-24 w-24 rounded-full self-center object-cover cursor-pointer mt-2' alt='profile' />
+                <img src={formData.avatar || currentUser.avatar} onClick={() => fileRef.current.click()} className='h-24 w-24 rounded-full self-center object-cover cursor-pointer mt-2' alt='profile' />
                 <p className='text-sm text-center'>
                     {
                         fileUploadError ?
