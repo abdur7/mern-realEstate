@@ -2,18 +2,6 @@ import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
 
-export const test = (req, res) => {
-  res.json({
-    message: "test route",
-  });
-};
-
-export const test2 = (req, res) => {
-  res.json({
-    message: "test 2 route and user controller",
-  });
-};
-
 export const updateUser = async (req, res, next) => {
   if (req.params.id !== req.user.id)
     return next(errorHandler(401, "forbidden"));
@@ -39,6 +27,19 @@ export const updateUser = async (req, res, next) => {
     const { password, ...rest } = updatedUser._doc;
     res.status(200).json(rest);
   } catch (error) {
-    next();
+    next(error);
+  }
+};
+
+export const deleteUser = async (req, res, next) => {
+  if (req.user.id !== req.params.id)
+    return next(errorHandler(401, "Forbidden access"));
+
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.clearCookie("access_token");
+    res.status(200).json("User has been deleted!");
+  } catch (error) {
+    next(error);
   }
 };
