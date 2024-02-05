@@ -4,6 +4,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/
 import { app } from "../../firebase.js"
 import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart, signInFailure, signOutUserFailure, signOutUserSuccess } from '../redux/user/userSlice.js'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 
 // firebase storage rules 
@@ -148,6 +149,9 @@ export default function Profile() {
                 <input type="email" id='email' defaultValue={currentUser.email} placeholder='Email' className='border p-3 rounded-lg' onChange={handleChange} />
                 <input type="password" id='password' placeholder='Password' className='border p-3 rounded-lg' onChange={handleChange} />
                 <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-80 disabled:opacity-50'>{loading ? "Updating ..." : "update"}</button>
+                <Link to={"/create-listing"} className='bg-green-700 p-3 rounded-lg text-white uppercase text-center hover:opacity-85'>
+                    Create Lisitng
+                </Link>
 
             </form>
             <div className='flex justify-between mt-5'>
