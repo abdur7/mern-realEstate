@@ -8,6 +8,7 @@ import SignOut from "./pages/SignUp"
 import Header from './components/Header'
 import PrivateRoute from './components/PrivateRoute'
 import CreateLisitng from './pages/CreateLisitng'
+import UpdateListing from './pages/UpdateListing'
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path='/create-listing' element={<CreateLisitng />} />
+          <Route path='/update-listing/:listingId' element={<UpdateListing />} />
         </Route>
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignOut />} />
