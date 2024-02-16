@@ -64,10 +64,10 @@ export default function Listing() {
                                 <SwiperSlide key={url}>
                                     <div
                                         className='h-[550px]'
-                                        style={{ background: `url(${url}) center no-repeat` }}
+                                        style={{ background: `url(${url}) center no-repeat`, backgroundSize: "cover" }}
                                     >
 
-                                        <img src={url} className='h-[550px] w-full ' />
+                                        {/* <img src={url} className='h-[550px] w-full ' /> */}
                                     </div>
                                 </SwiperSlide>
                             ))}
